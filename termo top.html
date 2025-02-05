@@ -43,11 +43,11 @@
 
     <div class="letra-container">
         <div class="fundo">
-            <input class="letra" type="text" maxlength="1">
-            <input class="letra" type="text" maxlength="1">
-            <input class="letra" type="text" maxlength="1">
-            <input class="letra" type="text" maxlength="1">
-            <input class="letra" type="text" maxlength="1">
+            <input class="letra" type="text" maxlength="1" oninput="this.value = this.value.replace(/[^a-zA-Z]/g, '')">
+            <input class="letra" type="text" maxlength="1" oninput="this.value = this.value.replace(/[^a-zA-Z]/g, '')">
+            <input class="letra" type="text" maxlength="1" oninput="this.value = this.value.replace(/[^a-zA-Z]/g, '')">
+            <input class="letra" type="text" maxlength="1" oninput="this.value = this.value.replace(/[^a-zA-Z]/g, '')">
+            <input class="letra" type="text" maxlength="1" oninput="this.value = this.value.replace(/[^a-zA-Z]/g, '')">
         </div>
     </div>
     <script>
