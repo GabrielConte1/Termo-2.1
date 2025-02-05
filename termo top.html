@@ -5,37 +5,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quadrado em volta de cada letra</title>
     <style>
-    
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+        }
         .letra-container {
             display: flex;
             justify-content: center; 
             align-items: center; 
             height: 100vh; 
+            background-color: rgb(80, 80, 72); 
         }
         .letra {
-            border-radius: 10px;
+            border-radius: 15px;
             display: inline-block; 
-            border: 2px solid black; 
+            border: 6px solid rgb(0, 0, 0); 
             padding: 5px; 
             margin: 3px; 
-            font-size: 24px;
+            font-size: 50px;
             text-align: center;
+            width: 100px;  
+            height: 100px; 
+            line-height: 100px; 
+            vertical-align: middle;
+            text-transform: uppercase;
+        }
+        .todasletras {
+            background-color: rgb(49, 49, 46);
+            color: rgb(255, 255, 255);
         }
     </style>
 </head>
 <body>
 
     <div class="letra-container">
-        <p>
-            
-            <span class="letra">H</span>
-            <span class="letra">E</span>
-            <span class="letra">L</span>
-            <span class="letra">L</span>
-            <span class="letra">O</span>
-        </p>
+        <div class="fundo">
+            <input class="letra" type="text" maxlength="1">
+            <input class="letra" type="text" maxlength="1">
+            <input class="letra" type="text" maxlength="1">
+            <input class="letra" type="text" maxlength="1">
+            <input class="letra" type="text" maxlength="1">
+        </div>
     </div>
-    <div class="fundo"></div>
+    <script>
+        var letras = document.querySelectorAll('.letra');
+        letras.forEach(function(letra) {
+            letra.classList.add('todasletras');
+        });
+    </script>
 
 </body>
 </html>
