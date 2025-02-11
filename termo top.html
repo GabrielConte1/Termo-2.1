@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quadrado em volta de cada letra</title>
     <style>
-
         body, html {
             margin: 0;
             padding: 0;
@@ -14,27 +13,27 @@
         }
         .letra-container {
             display: flex;
-            justify-content: center; 
-            align-items: center; 
-            height: 100vh; 
-            background-color: rgb(80, 80, 72); 
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: rgb(80, 80, 72);
         }
         .letra {
             border-radius: 15px;
-            display: inline-block; 
-            border: 6px solid rgb(0, 0, 0); 
-            padding: 5px; 
-            margin: 3px; 
+            display: inline-block;
+            border: 6px solid rgb(0, 0, 0);
+            padding: 5px;
+            margin: 3px;
             font-size: 50px;
             text-align: center;
-            width: 100px;  
-            height: 100px; 
-            line-height: 100px; 
+            width: 100px;
+            height: 100px;
+            line-height: 100px;
             vertical-align: middle;
             text-transform: uppercase;
         }
         .todasletras {
-            background-color: rgb(49, 49, 46);
+            background-color: rgb(77, 77, 0);
             color: rgb(255, 255, 255);
         }
     </style>
@@ -43,18 +42,23 @@
 
     <div class="letra-container">
         <div class="fundo">
-            <input class="letra" type="text" maxlength="1" oninput="this.value = this.value.replace(/[^a-zA-Z]/g, '')">
-            <input class="letra" type="text" maxlength="1" oninput="this.value = this.value.replace(/[^a-zA-Z]/g, '')">
-            <input class="letra" type="text" maxlength="1" oninput="this.value = this.value.replace(/[^a-zA-Z]/g, '')">
-            <input class="letra" type="text" maxlength="1" oninput="this.value = this.value.replace(/[^a-zA-Z]/g, '')">
-            <input class="letra" type="text" maxlength="1" oninput="this.value = this.value.replace(/[^a-zA-Z]/g, '')">
+            <input class="letra" type="text" maxlength="1" oninput="verificarLetra(this)">
+            <input class="letra" type="text" maxlength="1" oninput="verificarLetra(this)">
+            <input class="letra" type="text" maxlength="1" oninput="verificarLetra(this)">
+            <input class="letra" type="text" maxlength="1" oninput="verificarLetra(this)">
+            <input class="letra" type="text" maxlength="1" oninput="verificarLetra(this)">
         </div>
     </div>
     <script>
-        var letras = document.querySelectorAll('.letra');
-        letras.forEach(function(letra) {
-            letra.classList.add('todasletras');
-        });
+        var palavra = "termo";
+
+        function verificarLetra(input) {
+            if (palavra.includes(input.value.toLowerCase())) {
+                input.classList.add('todasletras');
+            } else {
+                input.classList.remove('todasletras');
+            }
+        }
     </script>
 
 </body>
