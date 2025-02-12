@@ -87,8 +87,14 @@
         }
 
         function verificarCursor(posicao, input, event) {
-            // verifica se a tecla do evento é o Backspace
-            if (event.key === 'Backspace') {
+            if (event.key === 'ArrowLeft') {
+                // verifica se a tecla do evento é a seta esquerda
+                moverCursorSetaEsquerda(posicao, event);
+            } else if (event.key === 'ArrowRight') {
+                // verifica se a tecla do evento é a seta direita
+                moverCursorSetaDireta(posicao, event);
+            } else if (event.key === 'Backspace') {
+                // verifica se a tecla do evento é o Backspace
                 tentaRetornarCursor(posicao, input);
             } else {
                 tentaAvancarCursor(posicao, input);
@@ -112,6 +118,28 @@
             var inputs = document.querySelectorAll('.letra');
             // verifica se pode retornar o cursor para o input anterior
             if (!input.value && posicao) {
+                inputs[posicao-1].focus();
+            }
+        }
+
+        function moverCursorSetaDireta(posicao, event) {
+            // cancela o evento de pressionar tecla
+            event.preventDefault();
+            // seleciona todos os elementos com a class letra
+            var inputs = document.querySelectorAll('.letra');
+            // verifica se existe um input maior para mudar para o próximo
+            if (posicao+1 < inputs.length) {
+                inputs[posicao+1].focus();
+            }
+        }
+
+        function moverCursorSetaEsquerda(posicao, event) {
+            // cancela o evento de pressionar tecla
+            event.preventDefault();
+            // seleciona todos os elementos com a class letra
+            var inputs = document.querySelectorAll('.letra');
+            // verifica se pode retornar o cursor para o input anterior
+            if (posicao) {
                 inputs[posicao-1].focus();
             }
         }
