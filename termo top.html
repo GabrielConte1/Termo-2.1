@@ -57,7 +57,23 @@
     </div>
 
     <script>
-        var palavra = "termo";
+        // banco de dados com 100 palavras comuns em português gerado pelo Chat GPT
+        var palavras = [
+          "amigo", "anexo", "andar", "ardor", "areia", "aviso", "balao", "banco", "barco", "beijo",
+          "berro", "bicho", "bloco", "boato", "bravo", "burro", "cacho", "caixa", "calor", "campo",
+          "canto", "carro", "cedro", "cerco", "chave", "cheio", "cinto", "cisco", "claro", "cobra",
+          "corpo", "cravo", "credo", "custo", "dados", "dedos", "dente", "dicas", "dique", "doido",
+          "drama", "ecoar", "elite", "enfim", "envio", "epico", "etico", "falso", "festa", "ficha",
+          "filho", "firme", "folha", "fundo", "gasto", "gente", "gesso", "grito", "haste", "horta",
+          "idolo", "ideal", "imune", "indio", "inter", "janta", "jogar", "juros", "lance", "lapso",
+          "largo", "leite", "lenda", "limpo", "lindo", "louco", "lucro", "lugar", "macho", "manso",
+          "massa", "matar", "media", "midia", "moeda", "morro", "multa", "nariz", "nobre", "nivel",
+          "noite", "norma", "nuvem", "obvio", "oculos", "ordem", "otimo", "pacto", "perto", "tenso"
+        ];
+
+        // sorteio de uma palavra dentro da lista
+        var sorteio = Math.floor(Math.random() * palavras.length);
+        var palavra = palavras[sorteio];
 
         function verificarLetra(posicao, input, event) {
             //impede inserir caracteres que não sejam letras
