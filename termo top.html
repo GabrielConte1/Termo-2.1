@@ -75,6 +75,7 @@
         var sorteio = Math.floor(Math.random() * palavras.length);
         var palavra = palavras[sorteio];
 
+        // verifica a letra do input e define o estilo visual
         function verificarLetra(posicao, input, event) {
             //impede inserir caracteres que não sejam letras
             if (!/[A-Z]/i.test(input.value)) {
@@ -102,6 +103,7 @@
             }
         }
 
+        // verifica a posição do cursor com tecla pressionada foca no input correto
         function verificarCursor(posicao, input, event) {
             if (event.key === 'ArrowLeft') {
                 // verifica se a tecla do evento é a seta esquerda
@@ -117,6 +119,7 @@
             }
         }
 
+        // verifica se pode e avança para o próximo input
         function tentaAvancarCursor(posicao, input) {
             // seleciona todos os elementos com a class letra
             var inputs = document.querySelectorAll('.letra');
@@ -129,6 +132,7 @@
             }
         }
 
+        // verifica se pode e retorna para o input anterior
         function tentaRetornarCursor(posicao, input) {
             // seleciona todos os elementos com a class letra
             var inputs = document.querySelectorAll('.letra');
@@ -138,6 +142,7 @@
             }
         }
 
+        // verifica se pode e move o cursor para direta
         function moverCursorSetaDireta(posicao, event) {
             // cancela o evento de pressionar tecla
             event.preventDefault();
@@ -149,6 +154,7 @@
             }
         }
 
+        // verifica se pode e move o cursor para esquerda
         function moverCursorSetaEsquerda(posicao, event) {
             // cancela o evento de pressionar tecla
             event.preventDefault();
