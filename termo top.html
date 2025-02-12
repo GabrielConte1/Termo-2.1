@@ -49,11 +49,11 @@
 <body>
     <div class="letra-container">
         <div class="fundo">
-            <input class="letra" type="text" maxlength="1" oninput="verificarLetra(0, this, event)">
-            <input class="letra" type="text" maxlength="1" oninput="verificarLetra(1, this, event)">
-            <input class="letra" type="text" maxlength="1" oninput="verificarLetra(2, this, event)">
-            <input class="letra" type="text" maxlength="1" oninput="verificarLetra(3, this, event)">
-            <input class="letra" type="text" maxlength="1" oninput="verificarLetra(4, this, event)">
+            <input class="letra" type="text" maxlength="1" oninput="verificarLetra(0, this, event)" onkeydown="verificarCursor(0, this, event)">
+            <input class="letra" type="text" maxlength="1" oninput="verificarLetra(1, this, event)" onkeydown="verificarCursor(1, this, event)">
+            <input class="letra" type="text" maxlength="1" oninput="verificarLetra(2, this, event)" onkeydown="verificarCursor(2, this, event)">
+            <input class="letra" type="text" maxlength="1" oninput="verificarLetra(3, this, event)" onkeydown="verificarCursor(3, this, event)">
+            <input class="letra" type="text" maxlength="1" oninput="verificarLetra(4, this, event)" onkeydown="verificarCursor(4, this, event)">
         </div>
     </div>
 
@@ -86,6 +86,36 @@
                 input.classList.add('naotem');
             }
         }
+
+        function verificarCursor(posicao, input, event) {
+            // verifica se a tecla do evento é o Backspace
+            if (event.key === 'Backspace') {
+                tentaRetornarCursor(posicao, input);
+            } else {
+                tentaAvancarCursor(posicao, input);
+            }
+        }
+
+        function tentaAvancarCursor(posicao, input) {
+            // seleciona todos os elementos com a class letra
+            var inputs = document.querySelectorAll('.letra');
+            // verifica se o input possui algum valor
+            if (input.value) {
+                // verifica se existe um input maior para mudar para o próximo
+                if (posicao+1 < inputs.length) {
+                    inputs[posicao+1].focus();
+                }
+            }
+        }
+
+        function tentaRetornarCursor(posicao, input) {
+            // seleciona todos os elementos com a class letra
+            var inputs = document.querySelectorAll('.letra');
+            // verifica se pode retornar o cursor para o input anterior
+            if (!input.value && posicao) {
+                inputs[posicao-1].focus();
+            }
+        }
     </script>
 </body>
-</html>`
+</html>
