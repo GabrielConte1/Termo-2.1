@@ -49,11 +49,11 @@
 <body>
     <div class="letra-container">
         <div class="fundo">
-            <input class="letra" type="text" maxlength="1" oninput="verificarLetra(0, this)">
-            <input class="letra" type="text" maxlength="1" oninput="verificarLetra(1, this)">
-            <input class="letra" type="text" maxlength="1" oninput="verificarLetra(2, this)">
-            <input class="letra" type="text" maxlength="1" oninput="verificarLetra(3, this)">
-            <input class="letra" type="text" maxlength="1" oninput="verificarLetra(4, this)">
+            <input class="letra" type="text" maxlength="1" oninput="verificarLetra(0, this, event)">
+            <input class="letra" type="text" maxlength="1" oninput="verificarLetra(1, this, event)">
+            <input class="letra" type="text" maxlength="1" oninput="verificarLetra(2, this, event)">
+            <input class="letra" type="text" maxlength="1" oninput="verificarLetra(3, this, event)">
+            <input class="letra" type="text" maxlength="1" oninput="verificarLetra(4, this, event)">
         </div>
     </div>
 
@@ -61,6 +61,12 @@
         var palavra = "termo";
 
         function verificarLetra(posicao, input, event) {
+            //impede inserir caracteres que não sejam letras
+            if (!/[A-Z]/i.test(input.value)) {
+                event.preventDefault();
+                input.value = '';
+            }
+
             // salva o valor em uma variável para utilizar mais vezes
             var letra = input.value.toLowerCase();
 
@@ -82,4 +88,4 @@
         }
     </script>
 </body>
-</html>
+</html>`
