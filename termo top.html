@@ -32,34 +32,54 @@
             vertical-align: middle;
             text-transform: uppercase;
         }
-        .todasletras {
+        .naotem {
+            background-color: rgb(36, 34, 34);
+            color: rgb(255, 255, 255);
+        }
+        .existe {
             background-color: rgb(77, 77, 0);
+            color: rgb(255, 255, 255);
+        }
+        .exata {
+            background-color: rgb(25, 122, 48);
             color: rgb(255, 255, 255);
         }
     </style>
 </head>
 <body>
-
     <div class="letra-container">
         <div class="fundo">
-            <input class="letra" type="text" maxlength="1" oninput="verificarLetra(this)">
-            <input class="letra" type="text" maxlength="1" oninput="verificarLetra(this)">
-            <input class="letra" type="text" maxlength="1" oninput="verificarLetra(this)">
-            <input class="letra" type="text" maxlength="1" oninput="verificarLetra(this)">
-            <input class="letra" type="text" maxlength="1" oninput="verificarLetra(this)">
+            <input class="letra" type="text" maxlength="1" oninput="verificarLetra(0, this)">
+            <input class="letra" type="text" maxlength="1" oninput="verificarLetra(1, this)">
+            <input class="letra" type="text" maxlength="1" oninput="verificarLetra(2, this)">
+            <input class="letra" type="text" maxlength="1" oninput="verificarLetra(3, this)">
+            <input class="letra" type="text" maxlength="1" oninput="verificarLetra(4, this)">
         </div>
     </div>
+
     <script>
         var palavra = "termo";
 
-        function verificarLetra(input) {
-            if (palavra.includes(input.value.toLowerCase())) {
-                input.classList.add('todasletras');
+        function verificarLetra(posicao, input, event) {
+            // salva o valor em uma variável para utilizar mais vezes
+            var letra = input.value.toLowerCase();
+
+            if (!letra) {
+                // limpa todos os estados caso o input seja vazio
+                input.classList.remove('exata');
+                input.classList.remove('existe');
+                input.classList.remove('naotem');
+            } else if (palavra[posicao] === letra) {
+                // verifica se a letra é exata
+                input.classList.add('exata');
+            } else if (palavra.includes(letra)) {
+                // verifica se a letra existe
+                input.classList.add('existe');
             } else {
-                input.classList.remove('todasletras');
+                // caso a letra não exista
+                input.classList.add('naotem');
             }
         }
     </script>
-
 </body>
 </html>
