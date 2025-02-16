@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quadrado em volta de cada letra</title>
+    <title>mimdepapai</title>
     <style>
         body, html {
             margin: 0;
@@ -12,11 +12,13 @@
             width: 100%;
             background-color: #6e5c62;
         }
-        .letra-container {
+        .container {
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
+            gap: 10px;
         }
         .letra {
             border-radius: 15px;
@@ -33,6 +35,17 @@
             text-transform: uppercase;
             background-color: #615458;
         }
+        .input-group {
+            display: flex;
+            gap: 10px;
+        }
+        #placar,
+        #cronometro {
+            color: rgb(46, 40, 32);
+            margin-bottom: 20px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 96px;
+        }
         .naotem {
             background-color: #191516;
             color: white;
@@ -48,15 +61,23 @@
     </style>
 </head>
 <body>
-    <div class="letra-container">
-        <input class="letra" type="text" maxlength="1" oninput="verificarLetra(0, this, event)" onkeydown="verificarCursor(0, this, event)">
-        <input class="letra" type="text" maxlength="1" oninput="verificarLetra(1, this, event)" onkeydown="verificarCursor(1, this, event)">
-        <input class="letra" type="text" maxlength="1" oninput="verificarLetra(2, this, event)" onkeydown="verificarCursor(2, this, event)">
-        <input class="letra" type="text" maxlength="1" oninput="verificarLetra(3, this, event)" onkeydown="verificarCursor(3, this, event)">
-        <input class="letra" type="text" maxlength="1" oninput="verificarLetra(4, this, event)" onkeydown="verificarCursor(4, this, event)">
+
+    <div class="container">     
+        <h1 id="cronometro">0</h1>   
+        <div class="input-group">
+            <input class="letra" type="text" maxlength="1" oninput="verificarLetraDigitada(0, this, event)" onkeydown="identificarTeclaPressionada(0, this, event)">
+            <input class="letra" type="text" maxlength="1" oninput="verificarLetraDigitada(1, this, event)" onkeydown="identificarTeclaPressionada(1, this, event)">
+            <input class="letra" type="text" maxlength="1" oninput="verificarLetraDigitada(2, this, event)" onkeydown="identificarTeclaPressionada(2, this, event)">
+            <input class="letra" type="text" maxlength="1" oninput="verificarLetraDigitada(3, this, event)" onkeydown="identificarTeclaPressionada(3, this, event)">
+            <input class="letra" type="text" maxlength="1" oninput="verificarLetraDigitada(4, this, event)" onkeydown="identificarTeclaPressionada(4, this, event)">
+        </div>
+        <h1 id="placar">0</h1> 
     </div>
 
     <script>
+        // controle se o usuário pode digitar novas letras
+        var podeDigitar = null;
+       
         // focar no primeiro input ao carregar a página
         document.querySelectorAll('.letra')[0].focus();
 
@@ -71,7 +92,7 @@
           "idolo", "ideal", "imune", "indio", "inter", "janta", "jogar", "juros", "lance", "lapso",
           "largo", "leite", "lenda", "limpo", "lindo", "louco", "lucro", "lugar", "macho", "manso",
           "massa", "matar", "media", "midia", "moeda", "morro", "multa", "nariz", "nobre", "nivel",
-          "noite", "norma", "nuvem", "obvio", "oculos", "ordem", "otimo", "pacto", "perto", "tenso"
+          "noite", "norma", "nuvem", "obvio", "ordem", "otimo", "pacto", "perto", "tenso"
         ];
 
         // sorteio de uma palavra dentro da lista
@@ -79,9 +100,9 @@
         var palavra = palavras[sorteio];
 
         // verifica a letra do input e define o estilo visual
-        function verificarLetra(posicao, input, event) {
+        function verificarLetraDigitada(posicao, input, event) {
             //impede inserir caracteres que não sejam letras
-            if (!/[A-Z]/i.test(input.value)) {
+            if (!podeDigitar || !/[A-Z]/i.test(input.value)) {
                 event.preventDefault();
                 input.value = '';
             }
@@ -107,13 +128,13 @@
         }
 
         // verifica a posição do cursor com tecla pressionada foca no input correto
-        function verificarCursor(posicao, input, event) {
+        function identificarTeclaPressionada(posicao, input, event) {
             if (event.key === 'ArrowLeft') {
                 // verifica se a tecla do evento é a seta esquerda
-                moverCursorSetaEsquerda(posicao, event);
+                tentarMoverCursoSetaEsquerda(posicao, event);
             } else if (event.key === 'ArrowRight') {
                 // verifica se a tecla do evento é a seta direita
-                moverCursorSetaDireta(posicao, event);
+                tentarMoverCursoSetaDireita(posicao, event);
             } else if (event.key === 'Backspace') {
                 // verifica se a tecla do evento é o Backspace
                 tentaRetornarCursor(posicao, input);
@@ -146,7 +167,7 @@
         }
 
         // verifica se pode e move o cursor para direta
-        function moverCursorSetaDireta(posicao, event) {
+        function tentarMoverCursoSetaDireita(posicao, event) {
             // cancela o evento de pressionar tecla
             event.preventDefault();
             // seleciona todos os elementos com a class letra
@@ -158,7 +179,7 @@
         }
 
         // verifica se pode e move o cursor para esquerda
-        function moverCursorSetaEsquerda(posicao, event) {
+        function tentarMoverCursoSetaEsquerda(posicao, event) {
             // cancela o evento de pressionar tecla
             event.preventDefault();
             // seleciona todos os elementos com a class letra
@@ -168,6 +189,29 @@
                 inputs[posicao-1].focus();
             }
         }
+
+        // regra do cronmetro
+        function cronometro (tempo) {
+            var inicio = Date.now();
+            var mostrador = document.getElementById('cronometro');
+            
+            (function regressivo () {
+                var agora =  Date.now();
+                var utilizado = tempo + inicio - agora;
+                mostrador.innerHTML = (utilizado > 0 ? utilizado : 0);
+                setTimeout(function() {
+                    if (utilizado > 0) {
+                        regressivo();
+                        podeDigitar = true;
+                    } else {
+                        podeDigitar = false;
+                    }
+                })
+            })();
+        }
+
+        cronometro(3000);
+
     </script>
 </body>
 </html>
