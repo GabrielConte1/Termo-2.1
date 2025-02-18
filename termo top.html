@@ -68,6 +68,9 @@
         75% { background-color: #ffff00cb; } 
         100% { background-color: #ff00ffb9; } 
     }
+    .button{
+        cursor: pointer;
+    }
 
             </style>
         </head>
@@ -82,7 +85,7 @@
                     <input class="letra" type="text" maxlength="1" oninput="verificarLetraDigitada(3, this, event)" onkeydown="identificarTeclaPressionada(3, this, event)">
                     <input class="letra" type="text" maxlength="1" oninput="verificarLetraDigitada(4, this, event)" onkeydown="identificarTeclaPressionada(4, this, event)">
                 </div>
-                <h1 id="placar"></h1> 
+                <h1 id="placar" class="button">Reiniciar</h1> 
             </div>
 
             <script>
@@ -91,16 +94,17 @@
             
                 // focar no primeiro input ao carregar a página
                 document.querySelectorAll('.letra')[0].focus();
+                document.querySelector(".button").style.visibility = "hidden";
 
                 // banco de dados com 100 palavras comuns em português gerado pelo Chat GPT
                 var palavras = [
-                "amigo", "anexo", "andar", "ardor", "areia", "aviso", "balao", "banco", "barco", "beijo",
+                "amigo", "anexo", "andar", "areia", "aviso", "balao", "banco", "barco", "beijo",
                 "berro", "bicho", "bloco", "boato", "bravo", "burro", "cacho", "caixa", "calor", "campo",
-                "canto", "carro", "cedro", "cerco", "chave", "cheio", "cinto", "cisco", "claro", "cobra",
-                "corpo", "cravo", "credo", "custo", "dados", "dedos", "dente", "dicas", "dique", "doido",
+                "canto", "carro", "cerco", "chave", "cheio", "cinto", "cisco", "claro", "cobra",
+                "corpo", "cravo", "credo", "custo", "dados", "dedos", "dente", "dicas", "doido",
                 "drama", "ecoar", "elite", "enfim", "envio", "epico", "etico", "falso", "festa", "ficha",
-                "filho", "firme", "folha", "fundo", "gasto", "gente", "gesso", "grito", "haste", "horta",
-                "idolo", "ideal", "imune", "indio", "inter", "janta", "jogar", "juros", "lance", "lapso",
+                "filho", "firme", "folha", "fundo", "gasto", "gente", "gesso", "grito",  "horta",
+                "idolo", "ideal", "imune", "indio", "janta", "jogar", "juros", "lance", "lapso",
                 "largo", "leite", "lenda", "limpo", "lindo", "louco", "lucro", "lugar", "macho", "manso",
                 "massa", "matar", "media", "midia", "moeda", "morro", "multa", "nariz", "nobre", "nivel",
                 "noite", "norma", "nuvem", "obvio", "ordem", "otimo", "pacto", "perto", "tenso"
@@ -217,12 +221,16 @@
                             } else {
                                 podeDigitar = false;
                                 alert("A palavra era "+ palavra)
+                                button = false
+                                document.querySelector(".button").style.visibility = "visible";
                             }
                         })
                     })();
                 }
+                document.querySelector(".button").addEventListener("click", 
+                function() { location.reload();}); 
 
-                    cronometro(30000);
+                    cronometro(50000);
 
             </script>
         </body>
