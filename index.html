@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <link rel="stylesheet" href="Style.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>index.html</title>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1 id="cronometro">0</h1>
+      <div class="input-group">
+        <input
+          class="letra"
+          type="text"
+          maxlength="1"
+          oninput="verificarLetraDigitada(0, this, event)"
+          onkeydown="identificarTeclaPressionada(0, this, event)"
+        />
+        <input
+          class="letra"
+          type="text"
+          maxlength="1"
+          oninput="verificarLetraDigitada(1, this, event)"
+          onkeydown="identificarTeclaPressionada(1, this, event)"
+        />
+        <input
+          class="letra"
+          type="text"
+          maxlength="1"
+          oninput="verificarLetraDigitada(2, this, event)"
+          onkeydown="identificarTeclaPressionada(2, this, event)"
+        />
+        <input
+          class="letra"
+          type="text"
+          maxlength="1"
+          oninput="verificarLetraDigitada(3, this, event)"
+          onkeydown="identificarTeclaPressionada(3, this, event)"
+        />
+        <input
+          class="letra"
+          type="text"
+          maxlength="1"
+          oninput="verificarLetraDigitada(4, this, event)"
+          onkeydown="identificarTeclaPressionada(4, this, event)"
+        />
+      </div>
+      <h1 id="placar" class="button">Reiniciar</h1>
+    </div>
+  </body>
+</html>

@@ -1,97 +1,6 @@
-        <!DOCTYPE html>
-        <html lang="pt">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>mimdepapai</title>
-            <style>
-                body, html {
-                    margin: 0;
-                    padding: 0;
-                    height: 100%;
-                    width: 100%;
-                    background-color: #6e5c62;
-                }
-                .container {
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    align-items: center;
-                    height: 100vh;
-                    gap: 10px;
-                }
-                .letra {
-                    border-radius: 15px;
-                    display: inline-block;
-                    border: 6px solid rgb(0, 0, 0);
-                    padding: 5px;
-                    margin: 3px;
-                    font-size: 50px;
-                    text-align: center;
-                    width: 100px;
-                    height: 100px;
-                    line-height: 100px;
-                    vertical-align: middle;
-                    text-transform: uppercase;
-                    background-color: #615458;
-                }
-                .input-group {
-                    display: flex;
-                    gap: 10px;
-                }
-                #placar,
-                #cronometro {
-                    color: rgb(46, 40, 32);
-                    margin-bottom: 20px;
-                    font-family: Arial, Helvetica, sans-serif;
-                    font-size: 96px;
-                }
-                .naotem {
-                    background-color: #191516;
-                    color: white;
-                    transition: all 0.5s ease-in-out;
-                }
-                .existe {
-                    background-color: #d3ad69;
-                    color: white;
-                    transition: all 0.5s ease-in-out;
-                }
-                .exata {
-                    animation: mudarCores 500ms infinite alternate;
-                        transition: all 0.5s ease-in-out;
-                }
-                
-                @keyframes mudarCores {
-        0% { background-color: #ff0000ef; }
-        25% { background-color: #00ff00c9; } 
-        50% { background-color: #0000ffc4; } 
-        75% { background-color: #ffff00cb; } 
-        100% { background-color: #ff00ffb9; } 
-    }
-    .button{
-        cursor: pointer;
-    }
-
-            </style>
-        </head>
-        <body>
-
-            <div class="container">     
-                <h1 id="cronometro">0</h1>   
-                <div class="input-group">
-                    <input class="letra" type="text" maxlength="1" oninput="verificarLetraDigitada(0, this, event)" onkeydown="identificarTeclaPressionada(0, this, event)">
-                    <input class="letra" type="text" maxlength="1" oninput="verificarLetraDigitada(1, this, event)" onkeydown="identificarTeclaPressionada(1, this, event)">
-                    <input class="letra" type="text" maxlength="1" oninput="verificarLetraDigitada(2, this, event)" onkeydown="identificarTeclaPressionada(2, this, event)">
-                    <input class="letra" type="text" maxlength="1" oninput="verificarLetraDigitada(3, this, event)" onkeydown="identificarTeclaPressionada(3, this, event)">
-                    <input class="letra" type="text" maxlength="1" oninput="verificarLetraDigitada(4, this, event)" onkeydown="identificarTeclaPressionada(4, this, event)">
-                </div>
-                <h1 id="placar" class="button">Reiniciar</h1> 
-            </div>
-
-            <script>
-                // controle se o usuário pode digitar novas letras
+                //codigo do projeto
                 var podeDigitar = null;
-            
+                
                 // focar no primeiro input ao carregar a página
                 document.querySelectorAll('.letra')[0].focus();
                 document.querySelector(".button").style.visibility = "hidden";
@@ -221,7 +130,6 @@
                             } else {
                                 podeDigitar = false;
                                 alert("A palavra era "+ palavra)
-                                button = false
                                 document.querySelector(".button").style.visibility = "visible";
                             }
                         })
@@ -231,7 +139,3 @@
                 function() { location.reload();}); 
 
                     cronometro(50000);
-
-            </script>
-        </body>
-        </html>
